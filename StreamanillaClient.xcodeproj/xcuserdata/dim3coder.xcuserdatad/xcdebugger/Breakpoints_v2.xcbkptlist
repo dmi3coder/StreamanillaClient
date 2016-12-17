@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "StreamanillaClient/main.cpp"
-            timestampString = "503696218.449222"
+            timestampString = "503697709.040565"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
             landmarkName = "client_handler(struct mg_connection *conn, int ev, void *p)"
             landmarkType = "9">
          </BreakpointContent>

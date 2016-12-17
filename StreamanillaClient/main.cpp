@@ -17,23 +17,32 @@ static void client_handler(struct mg_connection *conn, int ev, void *p) {
     static int a  = 1;
     switch (ev) {
         case MG_EV_CONNECT:
+            
             if (conn->flags & MG_F_CLOSE_IMMEDIATELY) {
                 printf("%s\n", "Error connecting to server!");
                 exit(EXIT_FAILURE);
+            }else{
+                string *data = new string("my location is woodward, usa");
+                mg_send(conn, data->c_str(), data->length());
+                delete data;
+                printf("%s\n", "Connected to server. Type a message and press enter.");
+                
             }
-            mg_send(conn, "a\n", 2);
-            printf("%s\n", "Connected to server. Type a message and press enter.");
             break;
         case MG_EV_SEND:
-            cout << "MG_EV_SEND dude,for real! "<< a++ << endl;
             break;
         case MG_EV_RECV:
+        {
+            string receivedString = io->buf;
+            cout << receivedString;
+        }
             cout << "MG_EV_RECV dude,for real! "<< a++ << endl;
             break;
         case MG_EV_ACCEPT:
             break;
         case MG_EV_POLL:
             mg_send(conn, &(conn->recv_mbuf), (int)conn->recv_mbuf.len);
+            mbuf_remove(&conn->recv_mbuf, (int)conn->recv_mbuf.len);
         default:
             break;
     }
